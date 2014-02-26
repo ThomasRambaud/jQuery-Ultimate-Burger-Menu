@@ -14,6 +14,7 @@ these comments) is used without any alteration
             buttonHeight: '50px',
             linkSelector: 'li a',
             linkText: function($a){ return $a.text() },
+            linkAccept: function($a, eq, $links) { return true; },
             fixed: true,
             zIndex: 100,
             top: 0,
@@ -134,7 +135,9 @@ these comments) is used without any alteration
             // loop through each link of the navigation
             $links.each(function(eq){
                 // for each, create new a link based and add it to the menu. The informations of the link (href, text), are get from the initial nav
-                $menu.append(createMenuLink($(this), eq, $links.length));
+                if(settings.linkAccept($(this), eq, $links)){
+                    $menu.append(createMenuLink($(this), eq, $links.length));
+                }
             });
             
             return $menu;
