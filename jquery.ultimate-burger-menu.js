@@ -39,7 +39,8 @@ these comments) is used without any alteration
             animateSpeed: 0,
             hideOnBodyClick: true,
             showFromWidth: 0,
-            showUntilWidth: 640
+            showUntilWidth: 640,
+            translate: false
         }, options);
 
         // function to create the burger menu button
@@ -164,8 +165,16 @@ these comments) is used without any alteration
         var lastMenuShown = null;
         function showHideMenu($menu, hide, $button){
             var menuAnimation = {},
+            bodyAnimation = {},
             buttonAnimation = {},
             menuWidth = getMenuWidth();
+            
+            // if the menu has to translate the page
+            if(settings.translate){
+                // translate the body
+                bodyAnimation['margin-' + settings.position] = (hide ? 0 : menuWidth);
+                $('body').css('overflow-x', 'hidden').animate(bodyAnimation, settings.animateSpeed);
+            }
             
             // animate the menu to the left or right, depending to the set position
             menuAnimation[settings.position] = (hide ? '-' + menuWidth : 0);
