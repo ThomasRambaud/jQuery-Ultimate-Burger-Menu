@@ -49,5 +49,6 @@ There's a list of parameters you can pass to the burgerMenu() function. Here's t
         animateSpeed: 0, // if set to 0, the displaying of the menu is immediate, otherwise this is the duration of the animation
         hideOnBodyClick: true, // hide the burger menu when clicking outside
         showFromWidth: 0, // show the burger menu if window width >= 0
-        showUntilWidth: 640 // hide the burger menu if window width >= 640
+        showUntilWidth: 640, // hide the burger menu if window width >= 640
+        translate: false // if set to true, the page is translated when the menu is displayed, so the menu is not on top of the page but beside it. 
     });
