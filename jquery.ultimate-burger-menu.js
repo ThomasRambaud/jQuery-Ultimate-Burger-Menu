@@ -5,11 +5,17 @@ Permission to use this Javascript on your web page is
 granted provided that all of the code in this script (including
 these comments) is used without any alteration 
 */ 
+/* 
+Ultimate Burger Menu
+copyright 24 February 2014, by Thomas Rambaud http://thomasrambaud.com
+Permission to use this Javascript on your web page is
+granted provided that all of the code in this script (including
+these comments) is used without any alteration 
+*/ 
 (function($){
 
     $.fn.burgerMenu = function(options) {
         var settings = $.extend({
-            buttonLineColor: '#556b2f',
             buttonBg: 'white',
             buttonWidth: '50px',
             buttonHeight: '50px',
@@ -34,7 +40,6 @@ these comments) is used without any alteration
             linkTextDecoration: 'none',
             linkBorderBottom: '1px solid black',
             linkNoBorderOnLast: true,
-            linkUppercase: false,
             position: 'left',
             keepButtonNextToMenu: false,
             animateSpeed: 0,
@@ -200,18 +205,25 @@ these comments) is used without any alteration
             },
             ensureVisibleOnlyInBreakpoint = function(w){
                 if(w >= settings.showFromWidth && w <= settings.showUntilWidth){
+                    // show burger and menu
                     $button.show();
                     $menu.show();
+                    
+                    // hide the initial navigation
+                    if(settings.hideInitialNav){
+                        $this.hide();
+                    }
                 }else{
+                    // hide burger and menu
                     $button.hide();
                     $menu.hide();
+                    
+                    // show the initial navigation
+                    if(settings.hideInitialNav){
+                        $this.show();
+                    }
                 }
             };
-
-            // hide the initial navigation if requested
-            if(settings.hideInitialNav){
-                $this.hide();
-            }
 
             // when clicking on the burger
             $button.on('click', function(e){
@@ -239,7 +251,7 @@ these comments) is used without any alteration
                 ensureVisibleOnlyInBreakpoint($(this).width());
             });
             
-             ensureVisibleOnlyInBreakpoint($(window).width());
+            ensureVisibleOnlyInBreakpoint($(window).width());
             
             // hide the menu when clicking outside of it
             if(settings.hideOnBodyClick){
