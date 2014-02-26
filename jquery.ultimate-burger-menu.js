@@ -5,13 +5,6 @@ Permission to use this Javascript on your web page is
 granted provided that all of the code in this script (including
 these comments) is used without any alteration 
 */ 
-/* 
-Ultimate Burger Menu
-copyright 24 February 2014, by Thomas Rambaud http://thomasrambaud.com
-Permission to use this Javascript on your web page is
-granted provided that all of the code in this script (including
-these comments) is used without any alteration 
-*/ 
 (function($){
 
     $.fn.burgerMenu = function(options) {
