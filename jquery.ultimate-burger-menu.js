@@ -202,7 +202,7 @@ these comments) is used without any alteration
                         left: 0
                     }).animate({
                         opacity: 0.5
-                    }));
+                    }, settings.animateSpeed));
                 }else{
                     $('.burger-menu-overlay').animate({
                         opacity: 0
