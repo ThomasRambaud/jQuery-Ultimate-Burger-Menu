@@ -40,7 +40,8 @@ these comments) is used without any alteration
             hideOnBodyClick: true,
             showFromWidth: 0,
             showUntilWidth: 640,
-            translate: false
+            translate: false,
+            overlay: false
         }, options);
 
         // function to create the burger menu button
@@ -185,6 +186,30 @@ these comments) is used without any alteration
                 // animate the button too so it stays next to the menu, instead of staying at the corner
                 buttonAnimation[settings.position] = (hide ? 0 : menuWidth);    
                 $button.animate(buttonAnimation, settings.animateSpeed);
+            }
+            
+            // show overlay, if desired
+            if(settings.overlay !== false ){
+                if(!hide){
+                    $('body').append($('<div>').attr('class', 'burger-menu-overlay').css({
+                        opacity: 0,
+                        background: settings.overlay,
+                        width: '100%',
+                        height: '100%',
+                        position: 'fixed',
+                        zIndex: settings.zIndex - 2,
+                        top: 0,
+                        left: 0
+                    }).animate({
+                        opacity: 0.5
+                    }));
+                }else{
+                    $('.burger-menu-overlay').animate({
+                        opacity: 0
+                    }, function(){
+                        $(this).remove();
+                    });
+                }
             }
 
             // hide the previous opened menu, if existing
