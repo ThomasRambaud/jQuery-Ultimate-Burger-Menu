@@ -191,6 +191,7 @@ these comments) is used without any alteration
             // show overlay, if desired
             if(settings.overlay !== false ){
                 if(!hide){
+                    // Add the overlay to the dom, then animate it
                     $('body').append($('<div>').attr('class', 'burger-menu-overlay').css({
                         opacity: 0,
                         background: settings.overlay,
@@ -204,6 +205,7 @@ these comments) is used without any alteration
                         opacity: 0.5
                     }, settings.animateSpeed));
                 }else{
+                    // fade overlay and remove it
                     $('.burger-menu-overlay').animate({
                         opacity: 0
                     }, function(){
