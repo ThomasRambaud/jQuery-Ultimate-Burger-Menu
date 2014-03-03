@@ -172,8 +172,11 @@ these comments) is used without any alteration
             // if the menu has to translate the page
             if(settings.translate){
                 // translate the body
-                bodyAnimation['margin-' + settings.position] = (hide ? 0 : menuWidth);
-                $('body').css('overflow-x', 'hidden').animate(bodyAnimation, settings.animateSpeed);
+                bodyAnimation[settings.position] = (hide ? 0 : menuWidth);
+                $('body').css({
+                    'overflow-x': 'hidden',
+                    'position': 'relative'
+                }).animate(bodyAnimation, settings.animateSpeed);
             }
             
             // animate the menu to the left or right, depending to the set position
