@@ -69,7 +69,7 @@ these comments) is used without any alteration
             
             return $button;
         }
-        
+
         // function to create a line in the button, to shape the burger
         function createButtonLine(eq){
             // create a line and define its CSS
@@ -85,7 +85,7 @@ these comments) is used without any alteration
 
             return $line;
         }
-        
+
         // function to add links into the burger menu
         function createMenuLink($a, eq, len){
             // create the link and define its CSS
@@ -109,7 +109,7 @@ these comments) is used without any alteration
             
             return $link;
         }
-        
+
         // create the menu which is displayed when clicking on the burger
         function createMenu(eq, $nav){
             // create the menu and define its CSS
@@ -143,7 +143,7 @@ these comments) is used without any alteration
             
             return $menu;
         }
-        
+
         function getMenuWidth(){
             // if the button has to stay next to the menu
             if(settings.keepButtonNextToMenu){
@@ -160,7 +160,7 @@ these comments) is used without any alteration
                 return settings.menuWidth;
             }
         }
-        
+
         // function to show / hide the menu when clicking on the burger
         var lastMenuShown = null;
         function showHideMenu($menu, hide, $button){
@@ -169,14 +169,11 @@ these comments) is used without any alteration
             buttonAnimation = {},
             menuWidth = getMenuWidth();
             
-            // if the menu has to translate the page
+            // if the page has to be translated
             if(settings.translate){
                 // translate the body
                 bodyAnimation[settings.position] = (hide ? 0 : menuWidth);
-                $('body').css({
-                    'overflow-x': 'hidden',
-                    'position': 'relative'
-                }).animate(bodyAnimation, settings.animateSpeed);
+                $('body').animate(bodyAnimation, settings.animateSpeed);
             }
             
             // animate the menu to the left or right, depending to the set position
@@ -185,7 +182,7 @@ these comments) is used without any alteration
             
             // if the button has to stay next to the menu
             if(settings.keepButtonNextToMenu){
-                // animate the button too so it stays next to the menu
+                // animate the button too so it stays next to the menu, instead of staying at the corner
                 buttonAnimation[settings.position] = (hide ? 0 : menuWidth);    
                 $button.animate(buttonAnimation, settings.animateSpeed);
             }
@@ -240,7 +237,7 @@ these comments) is used without any alteration
                 showHideMenu($menu, hide, $button);
                 $button.toggleClass('burger-menu-active');
             });
-            
+
             // append the created button and menu to the DOM
             $('body').append($button, $menu);
 
@@ -248,19 +245,19 @@ these comments) is used without any alteration
             $(window).on('resize', function(){
                 // hide the menu if visible
                 hideMenuIfVisible();
-                
+
                 // reset the menu width so it fits the screen as it should
                 var menuWidth = getMenuWidth(),
                 menuCss = { width: menuWidth };
                 menuCss[settings.position] = '-' + menuWidth;
                 $menu.css(menuCss);
-                
+
                 // ensure the menu is only visible in the defined breakpoints
                 ensureVisibleOnlyInBreakpoint($(this).width());
-            });
-            
+            }).trigger('resize');
+
             ensureVisibleOnlyInBreakpoint($(window).width());
-            
+
             // hide the menu when clicking outside of it
             if(settings.hideOnBodyClick){
                 // when clicking anywhere
@@ -274,7 +271,17 @@ these comments) is used without any alteration
                     }
                 });
             }
+            
+            // if the page has to be translated when the menu is shown
+            if(settings.translate){
+                // set the overflow-x to hidden so the horizontal scrollbar does not appear
+                // set position relative so we can animate the left/right property
+                $('body').css({
+                    'overflow-x': 'hidden',
+                    'position': 'relative'
+                });
+            }
         });
     };
-    
+
 })(jQuery);
