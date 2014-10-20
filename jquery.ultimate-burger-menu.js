@@ -41,7 +41,9 @@ these comments) is used without any alteration
             showFromWidth: 0,
             showUntilWidth: 640,
             translate: false,
-            overlay: false
+            overlay: false,
+            customContent: false,
+            customButton: false
         }, options);
 
         // function to create the burger menu button
@@ -63,10 +65,14 @@ these comments) is used without any alteration
             
             $button.css(buttonCss);
             
-            // create 3 lines in the button
-            $button.append(createButtonLine(0));
-            $button.append(createButtonLine(1));
-            $button.append(createButtonLine(2));
+            if(settings.customButton == false){
+                // create 3 lines in the button
+                $button.append(createButtonLine(0));
+                $button.append(createButtonLine(1));
+                $button.append(createButtonLine(2));            
+            }else{
+                $button.append(settings.customButton);
+            }
             
             return $button;
         }
@@ -134,13 +140,18 @@ these comments) is used without any alteration
             // affect the css to the menu, and remove the border to the left or the right (depending of the position setting)
             $menu.css(menuCss).css('border-' + (settings.position), 'none');
 
-            // loop through each link of the navigation
-            $links.each(function(eq){
-                // for each, create new a link based and add it to the menu. The informations of the link (href, text), are get from the initial nav
-                if(settings.linkAccept($(this), eq, $links)){
-                    $menu.append(createMenuLink($(this), eq, $links.length));
-                }
-            });
+            if(settings.customContent == false){
+                // loop through each link of the navigation
+                $links.each(function(eq){
+                    // for each, create new a link based and add it to the menu. The informations of the link (href, text), are get from the initial nav
+                    if(settings.linkAccept($(this), eq, $links)){
+                        $menu.append(createMenuLink($(this), eq, $links.length));
+                    }
+                });            
+            }else{
+                // append custom content to the menu
+                $menu.append(settings.customContent);
+            }
             
             return $menu;
         }

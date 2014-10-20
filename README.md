@@ -51,5 +51,7 @@ There's a list of parameters you can pass to the burgerMenu() function. Here's t
         showFromWidth: 0, // show the burger menu if window width >= 0
         showUntilWidth: 640, // hide the burger menu if window width >= 640
         translate: false, // if set to true, the page is translated when the menu is displayed, so the menu is not on top of the page but beside it. 
-        overlay: false // allows setting a semi-transparent background over the page when displayed. Values are false or an hexadecimal color (ex : overlay: '#434343')
+        overlay: false, // allows setting a semi-transparent background over the page when displayed. Values are false or an hexadecimal color (ex : overlay: '#434343')
+        customContent: false, // allows setting a custom html content that will fill the menu. Pass it an HTML string (customContent: '<p>Hello</p>')
+        customButton: false // allows setting a custom button. Pass it a jQuery element. It can be an image (customButton: $('<img src="..." />'))
     });
