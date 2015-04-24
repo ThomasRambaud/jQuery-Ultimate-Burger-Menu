@@ -1,16 +1,17 @@
 jQuery-Ultimate-Burger-Menu
 ================================
 
-This is a small JavaScript files which allows you to add a burger menu to your websites. 
-This one is really simple to use  :
+This small JavaScript file will help you add a burger menu to your websites.
+
+It's really easy to implement :
 
 1 . Make sure you included jQuery into your HTML
 
-2 . Include the jQuery Ultimate Burger Menu script
+2 . Then, include jQuery Ultimate Burger Menu
 
     <script type="text/javascript" src="jquery.ultimate-burger-menu.js"></script>	
 
-3 . Call the function burgerMenu() on your the element corresponding to your site navigation
+3 . Call the function burgerMenu() on the element corresponding to your site navigation
 
     <script>
         $('#nav').burgerMenu();
